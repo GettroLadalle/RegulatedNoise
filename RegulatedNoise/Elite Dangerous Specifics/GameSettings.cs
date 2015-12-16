@@ -85,12 +85,13 @@ namespace RegulatedNoise
         void LoadAppConfig()
         {
             AppConfig locAppConfig;
-
-            DialogResult MBResult = DialogResult.Ignore;
-            string configFile = Path.Combine(Form1.RegulatedNoiseSettings.GamePath, "AppConfig.xml");
-            XmlSerializer serializer; 
+            DialogResult MBResult;
 
             do{
+
+                MBResult = DialogResult.Ignore;
+                string configFile = Path.Combine(Form1.RegulatedNoiseSettings.GamePath, "AppConfig.xml");
+                XmlSerializer serializer; 
 
                 try
                 {
@@ -106,8 +107,15 @@ namespace RegulatedNoise
 
                     if (AppConfig == null)
                     {
-                        // ignore if it was loaded before
-                        cErr.processError(ex, String.Format("Error while loading ED-Appconfig from file <{0}>", configFile));
+                        MBResult = Form1.InstanceObject.cmdGamePath_ClickExtracted();
+
+                        if (MBResult == DialogResult.Cancel)
+                        {
+                            cErr.processError(ex, "Error in LoadAppConfig()");
+                        }
+                        else if (MBResult == DialogResult.OK)
+                            MBResult = DialogResult.Retry;
+                        
                     }
 
                 }

@@ -59,7 +59,7 @@ namespace RegulatedNoise
 
 #if DukeJones
 
-        public readonly decimal VersionDJ = 0.27m;
+        public readonly decimal VersionDJ = 0.28m;
 #endif
         public string PilotsName                                        = String.Empty;
         public string UserName                                          = String.Empty;
@@ -318,7 +318,7 @@ namespace RegulatedNoise
 
         public String getVersionString()
         {
-            return Version.ToString(CultureInfo.InvariantCulture) + "_" + VersionDJ.ToString(CultureInfo.InvariantCulture);
+            return "v" + Version.ToString(CultureInfo.InvariantCulture) + "_" + VersionDJ.ToString(CultureInfo.InvariantCulture);
         }
 
         public String GetUserID()

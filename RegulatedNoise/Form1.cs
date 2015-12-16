@@ -919,6 +919,7 @@ namespace RegulatedNoise
             }
 
             txtTraineddataFile.Text                 = RegulatedNoiseSettings.TraineddataFile;
+            txtGamePath.Text                        = RegulatedNoiseSettings.GamePath;
             
             _commandersLogColumnSorter.SortColumn   = RegulatedNoiseSettings.CmdrsLogSortColumn;
             _commandersLogColumnSorter.Order        = RegulatedNoiseSettings.CmdrsLogSortOrder;
@@ -3671,7 +3672,13 @@ namespace RegulatedNoise
     
                     if (currentRow.CommodityName == "Panik")
                         Debug.Print("STOP");
-                            
+                    
+                    if(currentRow.Demand > 0)
+                        currentRow.DemandLevel = "MED";
+
+                    if(currentRow.DemandLevel ==  "")
+                        currentRow.SupplyLevel = "MED";
+
                     if (CommodityData != null)
                     { 
                         if ((!String.IsNullOrEmpty(currentRow.SupplyLevel)) && (!String.IsNullOrEmpty(currentRow.DemandLevel)))
@@ -4616,11 +4623,12 @@ namespace RegulatedNoise
                     RegExTest  = new Regex(String.Format("FindBestIsland:.+:.+:.+:.+", Regex.Escape(RegulatedNoiseSettings.PilotsName)), RegexOptions.IgnoreCase);
                     RegExTest2 = new Regex(String.Format("vvv------------ ISLAND .+ CLAIMED ------------vvv"), RegexOptions.IgnoreCase);
 
-                    var appConfigPath = RegulatedNoiseSettings.ProductsPath;
+                    var appConfigPath = RegulatedNoiseSettings.GamePath;
 
                     if (Directory.Exists(appConfigPath))
                     {
-                        var versions = Directory.GetDirectories(appConfigPath).Where(x => x.Contains("FORC-FDEV")).ToList().OrderByDescending(x => x).ToList();
+                        //var versions = Directory.GetDirectories(appConfigPath).Where(x => x.Contains("FORC-FDEV")).ToList().OrderByDescending(x => x).ToList();
+                        var versions = new String[] {appConfigPath};
 
                         if (versions.Count() == 0)
                         {
@@ -6057,9 +6065,6 @@ namespace RegulatedNoise
 
                 SaveSettings();
             }
-
-                
-
         }
          
    
@@ -8105,5 +8110,58 @@ namespace RegulatedNoise
             SaveSettings();
         }
 
+        /// <summary>
+        /// selects another game path
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdGamePath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmdGamePath_ClickExtracted();
+            }
+            catch (Exception ex)
+            {
+                cErr.showError(ex, "Error in cmdGamePath_Click");
+            }
+            
+        }
+
+        public DialogResult cmdGamePath_ClickExtracted()
+        {
+            FolderBrowserDialog BrwsDlg = new FolderBrowserDialog();
+            DialogResult result;
+
+            BrwsDlg.Description  = "Please select manually your active game path. (it's one of the subdirs under the ED-'products'-dir)";
+            BrwsDlg.SelectedPath = RegulatedNoiseSettings.GamePath;
+
+            result = BrwsDlg.ShowDialog(this);
+
+            if (result == DialogResult.OK)
+            {
+                String newPath = BrwsDlg.SelectedPath;
+                String newProductPath = Directory.GetParent(newPath).FullName;
+                String newGamePath = newPath;
+
+                if (newProductPath.Substring(Directory.GetParent(newProductPath).FullName.Length).Replace("\\","").Equals("Products", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    RegulatedNoiseSettings.GamePath = newGamePath;
+                    RegulatedNoiseSettings.ProductsPath = newProductPath;
+                    txtGamePath.Text = RegulatedNoiseSettings.GamePath;
+
+                    SaveSettings();
+
+                    MessageBox.Show("Path changed. Please restart RegulatedNoise", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                }
+                else
+                {
+                    result = MessageBox.Show("Sorry, this seems not to be the correct dir (no 'Products' in the path).", "Wrong path", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+                }
+            }
+
+            return result;
+        }
      }
 }

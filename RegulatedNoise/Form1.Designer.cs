@@ -361,6 +361,9 @@
             this.button15 = new System.Windows.Forms.Button();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.txtGamePath = new System.Windows.Forms.TextBox();
+            this.cmdGamePath = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
             this.cbLoadStationsJSON = new System.Windows.Forms.CheckBox();
             this.label74 = new System.Windows.Forms.Label();
             this.cbAutoActivateSystemTab = new System.Windows.Forms.CheckBox();
@@ -4270,6 +4273,9 @@
             this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox12.Controls.Add(this.txtGamePath);
+            this.groupBox12.Controls.Add(this.cmdGamePath);
+            this.groupBox12.Controls.Add(this.label31);
             this.groupBox12.Controls.Add(this.label89);
             this.groupBox12.Controls.Add(this.nudPurgeOldDataDays);
             this.groupBox12.Controls.Add(this.cmdPurgeOldData);
@@ -4285,6 +4291,33 @@
             this.groupBox12.TabIndex = 12;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Other";
+            // 
+            // txtGamePath
+            // 
+            this.txtGamePath.Location = new System.Drawing.Point(8, 256);
+            this.txtGamePath.Name = "txtGamePath";
+            this.txtGamePath.ReadOnly = true;
+            this.txtGamePath.Size = new System.Drawing.Size(373, 20);
+            this.txtGamePath.TabIndex = 65;
+            // 
+            // cmdGamePath
+            // 
+            this.cmdGamePath.Location = new System.Drawing.Point(279, 282);
+            this.cmdGamePath.Name = "button11";
+            this.cmdGamePath.Size = new System.Drawing.Size(102, 23);
+            this.cmdGamePath.TabIndex = 64;
+            this.cmdGamePath.Text = "Select";
+            this.cmdGamePath.UseVisualStyleBackColor = true;
+            this.cmdGamePath.Click += new System.EventHandler(this.cmdGamePath_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(26, 238);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(102, 13);
+            this.label31.TabIndex = 63;
+            this.label31.Text = "Active Product Path";
             // 
             // cbLoadStationsJSON
             // 
@@ -5161,6 +5194,9 @@
         private System.Windows.Forms.RadioButton rbUserID;
         internal System.Windows.Forms.TextBox txtCmdrsName;
         private System.Windows.Forms.CheckBox cbEDDNAutoListen;
+        private System.Windows.Forms.TextBox txtGamePath;
+        private System.Windows.Forms.Button cmdGamePath;
+        private System.Windows.Forms.Label label31;
 
         
     }
