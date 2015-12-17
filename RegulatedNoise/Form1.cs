@@ -749,7 +749,11 @@ namespace RegulatedNoise
                 var gamedirs = new List<string>();
                 foreach (var dir in dirs)
                 {
-                    if (Path.GetFileName(dir).StartsWith("FORC-FDEV"))
+                    if (Path.GetFileName(dir).StartsWith("elite-dangerous-64"))
+                    {
+                        gamedirs.Add(dir);
+                    }
+                    else if (Path.GetFileName(dir).StartsWith("FORC-FDEV"))
                     {
                         gamedirs.Add(dir);
                     }
