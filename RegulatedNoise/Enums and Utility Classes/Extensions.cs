@@ -73,6 +73,23 @@ namespace RegulatedNoise.Enums_and_Utility_Classes
 
             return retValue;
         }
+
+        public static string ToNString(this int? thisInt, String NullString)
+        {
+            string retValue = null;
+
+            switch (thisInt)
+	        {
+                case null:
+                    retValue = NullString;
+                    break;
+                default:
+                    retValue = thisInt.ToString();
+                    break;
+	        }
+
+            return retValue;
+        }
     }
 
     static class Extensions_LongNullable
@@ -127,12 +144,22 @@ namespace RegulatedNoise.Enums_and_Utility_Classes
         /// </summary>
         /// <param name="thisString">a string or null</param>
         /// <returns></returns>
-        public static string NToString(this string thisString)
+        public static string NToString(this string thisString, String NullString)
         {
             if(thisString == null)
-                return Program.NULLSTRING;
+                return NullString;
             else
                 return thisString;
+        }
+
+        /// <summary>
+        /// converts a string that can be null to a string that represents null as a string ("undefined")
+        /// </summary>
+        /// <param name="thisString">a string or null</param>
+        /// <returns></returns>
+        public static string NToString(this string thisString)
+        {
+            return NToString(thisString, Program.NULLSTRING);
         }
 
         /// <summary>
@@ -206,6 +233,53 @@ namespace RegulatedNoise.Enums_and_Utility_Classes
 
     }
 
+    static class Extensions_Control
+    {
+        /// <summary>
+        /// Checks whether a control or its parent is in design mode.
+        /// </summary>
+        /// <param name="c">The control to check.</param>
+        /// <returns>Returns TRUE if in design mode, false otherwise.</returns>
+        public static bool IsDesignMode(this System.Windows.Forms.Control c)
+        {
+            if ( c == null )
+            {
+                return false;
+            }
+            else
+            {
+                while ( c != null )
+                {
+                if ( c.Site != null && c.Site.DesignMode )
+                {
+                    return true;
+                }
+                else
+                {
+                    c = c.Parent;
+                }
+                }
 
+                return false;
+            }
+        }
+    }
 
+    static class Extensions_Event
+    {
+
+        /// <summary>
+        /// adds a null-checking "Raise" mechanism to events
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="eventHandler"></param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void Raise <T> (this EventHandler <T> eventHandler, Object sender, T e) where T : EventArgs
+        {
+           if (eventHandler != null) {
+              eventHandler (sender, e);
+           }
+        }
+    }
 }

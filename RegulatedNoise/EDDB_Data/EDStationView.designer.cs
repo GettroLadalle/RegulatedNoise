@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvStation = new System.Windows.Forms.DataGridView();
+            this.components = new System.ComponentModel.Container();
+            this.dgvStation = new RegulatedNoise.Enums_and_Utility_Classes.DataGridViewExt(this.components);
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +46,7 @@
             this.Id,
             this.Value,
             this.Value_2});
+            this.dgvStation.DoubleBuffer = false;
             this.dgvStation.Location = new System.Drawing.Point(12, 12);
             this.dgvStation.Name = "dgvStation";
             this.dgvStation.Size = new System.Drawing.Size(844, 462);
@@ -77,6 +79,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 486);
             this.Controls.Add(this.dgvStation);
+            this.DoubleBuffered = true;
             this.Name = "EDStationView";
             this.Text = "EDStationView";
             ((System.ComponentModel.ISupportInitialize)(this.dgvStation)).EndInit();
@@ -86,7 +89,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvStation;
+        private RegulatedNoise.Enums_and_Utility_Classes.DataGridViewExt dgvStation;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value_2;

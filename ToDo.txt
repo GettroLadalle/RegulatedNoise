@@ -22,18 +22,12 @@ todo:
    
    
    
-1.84_0.27
-   * changed EDDN receiving routine to v2/v1 schema
-   * cleaned up a little bit the involved codes
-   * added a list of "trusted senders" (in settings-file) for 
-     programs who are expected so send correct market data to 
-	 negotiate the plausibility filter
-   * fixed the behaviour for ocr when location is still "scanning..."
-   * fixed the behaviour for "Market Data Collected Event" when location is still "scanning..."
-   * system location will be set if market data is scanned, and will be reset if leaving the location
-   * added "SAP 8 CORE CONTAINER" to the base commodities
-   * added latest EDDB files
-   * added a icon (thanks to SpyMaster356)
+1.84_0.29
+   * improved gui performance of grids
+   * fixed error while viewing commodity warn levels
+-------------------------------------------------------------------------------------         
+1.84_0.28
+   * you can set manual the active game path (settings tab)
 -------------------------------------------------------------------------------------         
 1.84_0.27_1
    * changed EDDN sending routine to v2 schema

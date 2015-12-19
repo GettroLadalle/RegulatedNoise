@@ -59,7 +59,7 @@ namespace RegulatedNoise
 
 #if DukeJones
 
-        public readonly decimal VersionDJ = 0.28m;
+        public readonly decimal VersionDJ = 0.29m;
 #endif
         public string PilotsName                                        = String.Empty;
         public string UserName                                          = String.Empty;

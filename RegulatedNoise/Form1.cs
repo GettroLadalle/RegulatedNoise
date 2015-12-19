@@ -1024,7 +1024,7 @@ namespace RegulatedNoise
         /// <param name="Language"></param>
         public string getCommodityBasename(enLanguage Language, string CommodityName)
         {
-            string BaseName                             = String.Empty;
+            string BaseName                             = Program.COMMODITY_NOT_SET;
             dsCommodities.NamesRow[] currentCommodity   = null;
 
             switch (Language)

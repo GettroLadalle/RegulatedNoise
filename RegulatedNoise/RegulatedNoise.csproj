@@ -138,6 +138,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Enums and Utility Classes\CsvRow.cs" />
+    <Compile Include="Enums and Utility Classes\DataGridViewExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Enums and Utility Classes\DataGridViewExt.designer.cs">
+      <DependentUpon>DataGridViewExt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enums and Utility Classes\Extensions.cs" />
     <Compile Include="Enums and Utility Classes\centralizedErrorhandler.cs" />
     <Compile Include="Enums and Utility Classes\dsCommodities.cs">

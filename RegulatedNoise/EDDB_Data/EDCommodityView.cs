@@ -183,10 +183,18 @@ namespace RegulatedNoise.EDDB_Data
 
 		private void cmdFullList_Click(object sender, EventArgs e)
 		{
-			EDCommodityListView view = new EDCommodityListView(cmdCommodity.Text);
-			Visible = false;
-			view.ShowDialog(this);
-			Close();
+            try
+            {
+			    EDCommodityListView view = new EDCommodityListView(cmdCommodity.Text);
+			    Visible = false;
+			    view.ShowDialog(this);
+			    Close();
+            }
+            catch (Exception ex)
+            {
+                cErr.showError(ex, "Error in cmdFullList_Click");
+            }
+
 		}
 
 	}
